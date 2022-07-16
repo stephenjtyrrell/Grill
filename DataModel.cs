@@ -21,6 +21,7 @@ namespace GrillSolution
         public int Width { get; set; }
         public string Duration { get; set; }
         public int Quantity { get; set; }
+        public int SurfaceArea {get; set; }
 
     }
 }

@@ -13,19 +13,23 @@ using System.Web;
 {
     static void Main(string[] args)
     {
-        List<Menu> Menus = getMenus();
-        List<Menu> SortedMenus = Menus.OrderBy(m=>m.menu).ToList();
-        foreach(Menu fullMenu in SortedMenus){
+        int grillLength = 20;
+        int grillWidth = 30;
+        int grillSurfaceArea = grillLength * grillWidth;
+        List<Menu> sortedMenus = getMenus().OrderBy(m=>m.menu).ToList();
+        foreach(Menu fullMenu in sortedMenus){
             List<MenuItem> menuItems = fullMenu.items;
             Console.WriteLine(fullMenu.menu + " has " + menuItems.Count + " types of items");
             int quantityOfItems = new int();
+            int totalSurfaceAreaFood = new int();
             foreach(MenuItem menuItem in menuItems){
                 Console.WriteLine(menuItem.Name + " has a quantity of " + menuItem.Quantity);
                 quantityOfItems = quantityOfItems + menuItem.Quantity;
+                menuItem.SurfaceArea = menuItem.Length * menuItem.Width;
+                totalSurfaceAreaFood = totalSurfaceAreaFood + (menuItem.SurfaceArea * menuItem.Quantity);
             }
-            
-             Console.WriteLine(fullMenu.menu + " has " + quantityOfItems + " total items");
-           
+            Console.WriteLine(fullMenu.menu + " has " + quantityOfItems + " total items with a total surface area of " + totalSurfaceAreaFood);
+
         }
 
     }
