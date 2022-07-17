@@ -67,7 +67,6 @@ using System.Web;
             List<MenuItem> sortedByQuantity = fullMenu.items.OrderBy(m=>m.Quantity).ToList();
             foreach(MenuItem menuItem in sortedByQuantity){
                 Console.WriteLine(fullMenu.menu + ", " + menuItem.Name + ", " + menuItem.Width + ", " + menuItem.Length + ", " + menuItem.Quantity);
-                
             }
         }
     }
