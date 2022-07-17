@@ -16,25 +16,14 @@ using System.Web;
         int grillLength = 20;
         int grillWidth = 30;
         int grillSurfaceArea = grillLength * grillWidth;
-        List<Menu> sortedMenus = getMenus().OrderBy(m=>m.menu).ToList();
-        foreach(Menu fullMenu in sortedMenus){
-            List<MenuItem> menuItems = fullMenu.items;
-            Console.WriteLine(fullMenu.menu + " has " + menuItems.Count + " types of items");
-            int quantityOfItems = new int();
-            int totalSurfaceAreaFood = new int();
-            foreach(MenuItem menuItem in menuItems){
-                Console.WriteLine(menuItem.Name + " has a quantity of " + menuItem.Quantity);
-                quantityOfItems = quantityOfItems + menuItem.Quantity;
-                menuItem.SurfaceArea = menuItem.Length * menuItem.Width;
-                totalSurfaceAreaFood = totalSurfaceAreaFood + (menuItem.SurfaceArea * menuItem.Quantity);
-            }
-            Console.WriteLine(fullMenu.menu + " has " + quantityOfItems + " total items with a total surface area of " + totalSurfaceAreaFood);
-
-        }
-
+        List<Menu> sortedMenus = GetMenus().OrderBy(m=>m.menu).ToList();
+        //Assuming we can cut up the food and maximise the space used on the grill, filling every cm of the grill
+        CutUpFoodAndCalculateRounds(grillSurfaceArea, sortedMenus);
+        //Without cutting up the food
+        CalculateRoundsWithoutCuttingFood(grillLength,grillWidth, sortedMenus);
     }
 
-    static List<Menu> getMenus()
+    static List<Menu> GetMenus()
     {
         List<Menu> Menus = new List<Menu>();
         var client = new RestClient("http://isol-grillassessment.azurewebsites.net/api/");
@@ -45,7 +34,42 @@ using System.Web;
             var MenuResponse = response.Content;
             Menus = JsonConvert.DeserializeObject<List<Menu>>(MenuResponse);
         }
+        else{
+            throw new Exception("No menus founds");
+        }
         return Menus;
+    }
+
+    static void CutUpFoodAndCalculateRounds(int grillSurfaceArea, List<Menu>Menus)
+    {
+        foreach(Menu fullMenu in Menus){
+            List<MenuItem> menuItems = fullMenu.items;
+            int totalSurfaceAreaFood = new int();
+            foreach(MenuItem menuItem in menuItems){
+                //calculate the surface area of each item
+                menuItem.SurfaceArea = menuItem.Length * menuItem.Width;
+                //add the total surface area of all of these items to the total for the menu
+                totalSurfaceAreaFood = totalSurfaceAreaFood + (menuItem.SurfaceArea * menuItem.Quantity);
+            }
+            //calculate the rounds needed by dividing the total surface area of the food by the surface area of the grill
+            decimal roundDecimals = Decimal.Divide(totalSurfaceAreaFood,grillSurfaceArea);
+            //round up to nearest integer
+            var rounds = Math.Ceiling(roundDecimals);
+            Console.WriteLine(fullMenu.menu + " will take " + rounds + " rounds, if we cut up the food");
+
+        }
+    }
+
+    static void CalculateRoundsWithoutCuttingFood(int grillLength, int grillWidth, List<Menu>Menus)
+    {
+        foreach(Menu fullMenu in Menus){
+            //order menuItems by quantity descending
+            List<MenuItem> sortedByQuantity = fullMenu.items.OrderBy(m=>m.Quantity).ToList();
+            foreach(MenuItem menuItem in sortedByQuantity){
+                Console.WriteLine(fullMenu.menu + ", " + menuItem.Name + ", " + menuItem.Width + ", " + menuItem.Length + ", " + menuItem.Quantity);
+                
+            }
+        }
     }
 }
 
