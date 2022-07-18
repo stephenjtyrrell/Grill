@@ -23,5 +23,17 @@ namespace GrillSolution
         public int Quantity { get; set; }
         public int SurfaceArea {get; set; }
 
+        public Grill position;
+
+    }
+    public class Grill
+    {
+                    public int pos_x;
+            public int pos_z;
+        public Grill rightCorner { get; set;}
+        public Grill bottomCorner { get; set;}
+        public int Length {get; set; }
+        public int Width {get; set;}
+        public bool isOccupied {get; set;}
     }
 }
