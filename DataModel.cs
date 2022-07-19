@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GrillSolution
+namespace Grill.DataModel
 {
+
     public class Menu
     {
         public string Id { get; set; }
         public string menu { get; set; }
         public List<MenuItem> items { get; set; }
+        public int roundsCutUp {get; set;}
+        public int roundsRegular {get; set;}
     }
 
     public class MenuItem
@@ -23,15 +26,15 @@ namespace GrillSolution
         public int Quantity { get; set; }
         public int SurfaceArea {get; set; }
 
-        public Grill position;
+        public Rectangle position;
 
     }
-    public class Grill
+    public class Rectangle
     {
-                    public int pos_x;
-            public int pos_z;
-        public Grill rightCorner { get; set;}
-        public Grill bottomCorner { get; set;}
+        public int pos_x;
+        public int pos_z;
+        public Rectangle rightCorner { get; set;}
+        public Rectangle bottomCorner { get; set;}
         public int Length {get; set; }
         public int Width {get; set;}
         public bool isOccupied {get; set;}

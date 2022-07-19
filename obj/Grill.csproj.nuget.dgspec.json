@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\stety\\Documents\\GitHub\\Grill\\Grill.csproj": {}
+    "C:\\Users\\stety\\source\\repos\\Grill\\Grill.csproj": {}
   },
   "projects": {
-    "C:\\Users\\stety\\Documents\\GitHub\\Grill\\Grill.csproj": {
+    "C:\\Users\\stety\\source\\repos\\Grill\\Grill.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\stety\\Documents\\GitHub\\Grill\\Grill.csproj",
+        "projectUniqueName": "C:\\Users\\stety\\source\\repos\\Grill\\Grill.csproj",
         "projectName": "Grill",
-        "projectPath": "C:\\Users\\stety\\Documents\\GitHub\\Grill\\Grill.csproj",
+        "projectPath": "C:\\Users\\stety\\source\\repos\\Grill\\Grill.csproj",
         "packagesPath": "C:\\Users\\stety\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\stety\\Documents\\GitHub\\Grill\\obj\\",
+        "outputPath": "C:\\Users\\stety\\source\\repos\\Grill\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\stety\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\stety\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "ConsoleTables": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
@@ -45,6 +51,10 @@
             "RestSharp": {
               "target": "Package",
               "version": "[108.0.1, )"
+            },
+            "rectpacksharp": {
+              "target": "Package",
+              "version": "[1.0.2, )"
             }
           },
           "imports": [
@@ -62,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
