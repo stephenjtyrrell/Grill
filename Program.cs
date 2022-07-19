@@ -27,7 +27,7 @@ namespace Grill{
         foreach(Menu Menu in sortedMenus){
         table.AddRow(Menu.menu, Menu.roundsCutUp, Menu.roundsRegular);
         }
-        table.Write();
+        table.Write(Format.Alternative);
         Console.WriteLine();
     }
     }
